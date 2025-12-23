@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+
+.characters {
+  min-height: 100vh;
+  padding: 120px 60px 60px;
+  color: #f5f5f5;
+  background: radial-gradient(circle at 0 0, rgba(255, 0, 0, 0.08), transparent 55%),
+              radial-gradient(circle at 100% 100%, rgba(255, 0, 0, 0.12), transparent 55%);
+}
+
+.characters-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  text-shadow:
+    0 0 10px rgba(179, 0, 0, 0.8),
+    0 0 20px rgba(179, 0, 0, 0.5);
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  max-width: 980px;
+}
+
+.character-card {
+  cursor: pointer;
+}
+
+.card-thumb {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1a;
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(179, 0, 0, 0.7);
+}
+
+.card-thumb-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.1) contrast(1.05);
+  transform: scale(1.05);
+  transition: transform 0.6s ease, filter 0.6s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.character-card:hover .card-thumb-image {
+  transform: scale(1.1);
+  filter: brightness(0.75) saturate(1.2);
+}
+
+.card-thumb-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+}
+
+/* Modal flip card */
+.character-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.character-modal {
+  position: relative;
+  width: min(420px, 90vw);
+  height: 520px;
+  perspective: 1600px;
+}
+
+.modal-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+}
+
+.modal-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.modal-card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  background: #000;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.95),
+    0 0 28px rgba(179, 0, 0, 0.9);
+}
+
+.modal-front-text {
+  position: relative;
+  width: 100%;
+  padding: 20px 22px 22px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0.6),
+    transparent
+  );
+}
+
+.modal-front-text h3 {
+  font-size: 24px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.modal-tagline {
+  font-size: 14px;
+  color: #ff4d4d;
+}
+
+.modal-hint {
+  font-size: 11px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.modal-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+.modal-card-face.modal-back {
+  transform: rotateY(180deg);
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-card-face.modal-back h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.power {
+  font-size: 14px;
+  color: #ff4d4d;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.quote {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  outline: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #f5f5f5;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.modal-close:hover {
+  background: #b30000;
+}
+
+@media (max-width: 900px) {
+  .character-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .character-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .characters {
+    padding-inline: 24px;
+  }
+}
+
+
